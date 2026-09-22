@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff6a00">
+    <title>নোটপ্যাড - SERA PRODUCT Panel</title>
+    <link rel="icon" href="https://seraproduct.com/photo/logo.png">
+    <link rel="stylesheet" href="notepad.css">
+</head>
+<body>
+
+    <!-- অথেন্টিকেশন ও সিকিউরিটি লোডিং স্ক্রিন -->
+    <div id="auth-loader" class="auth-loader">
+        <div class="loader-content">
+            <svg class="spinner-svg" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            </svg>
+            <p>নোটপ্যাড অ্যাক্সেস যাচাই করা হচ্ছে...</p>
+        </div>
+    </div>
+
+    <!-- মূল অ্যাপ্লিকেশন কন্টেইনার -->
+    <div id="app-container" class="app-container hidden">
+        
+        <!-- হেডার সেকশন -->
+        <header class="app-header">
+            <div class="header-left">
+                <img src="https://seraproduct.com/photo/logo.png" alt="Sera Product Logo" class="brand-logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'40\'><text x=\'0\' y=\'25\' font-size=\'20\' fill=\'%23FF6A00\' font-weight=\'bold\'>SERA PRODUCT</text></svg>';">
+                <div class="header-title-wrap">
+                    <h1>নোটপ্যাড</h1>
+                    <span id="user-badge" class="role-badge">ADMIN</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <span id="user-email-display" class="user-email">user@seraproduct.com</span>
+                <button id="logout-btn" class="logout-btn" title="লগআউট">
+                    <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+                    <span>লগআউট</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- মূল কন্টেন্ট এরিয়া -->
+        <main class="main-content">
+            
+            <!-- সাবটাইটেল এবং অ্যাকশন বার -->
+            <div class="content-topbar">
+                <div class="subtitle-wrap">
+                    <h2>গুরুত্বপূর্ণ তথ্য সংরক্ষণ ও পরিচালনা করুন</h2>
+                    <p>সর্বোচ্চ ২০টি নোট তৈরি ও সংরক্ষণ করার ব্যবস্থা</p>
+                </div>
+                <button id="open-create-modal-btn" class="primary-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    <span>নতুন নোট তৈরি করুন</span>
+                </button>
+            </div>
+
+            <!-- লিমিট ওয়ার্নিং ব্যানার -->
+            <div id="limit-warning-banner" class="limit-warning-banner hidden">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                <span>সর্বোচ্চ ২০টি নোট তৈরি করা হয়েছে। নতুন নোট তৈরি করতে আগে একটি নোট মুছে ফেলুন।</span>
+            </div>
+
+            <!-- পরিসংখ্যান এবং সার্চ বার -->
+            <div class="dashboard-controls">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">মোট নোট</span>
+                        <span id="total-note-count" class="stat-value">০ / ২০</span>
+                    </div>
+                </div>
+
+                <div class="search-box-wrap">
+                    <span class="search-icon">
+                        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    </span>
+                    <input type="text" id="search-input" placeholder="নোট খুঁজুন">
+                </div>
+            </div>
+
+            <!-- নোট কার্ড গ্রিড কন্টেইনার -->
+            <div id="notes-grid" class="notes-grid">
+                <!-- ডাইনামিক নোট কার্ড এখানে লোড হবে -->
+            </div>
+
+            <!-- লোডিং ও এম্পটি স্টেট -->
+            <div id="loading-state" class="center-state">
+                <svg class="spinner-svg" viewBox="0 0 50 50">
+                    <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                </svg>
+                <p>নোট লোড হচ্ছে...</p>
+            </div>
+
+            <div id="empty-state" class="center-state hidden">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                <p>কোনো নোট নেই</p>
+                <button id="empty-create-btn" class="primary-btn" style="margin-top: 15px;">
+                    <span>আপনার প্রথম নোট তৈরি করুন</span>
+                </button>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- মোডাল: নতুন নোট তৈরি করুন -->
+    <div id="create-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>নতুন নোট তৈরি করুন</h3>
+                <button class="close-modal-btn" data-modal="create-modal">
+                    <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </button>
+            </div>
+            <form id="create-note-form">
+                <div class="form-group">
+                    <label for="create-title">শিরোনাম</label>
+                    <input type="text" id="create-title" required placeholder="শিরোনাম লিখুন">
+                </div>
+                <div class="form-group">
+                    <label for="create-description">বিবরণ</label>
+                    <textarea id="create-description" rows="5" required placeholder="নোটের বিস্তারিত লিখুন"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel-btn close-modal-btn" data-modal="create-modal">বাতিল</button>
+                    <button type="submit" id="create-submit-btn" class="primary-btn">সংরক্ষণ করুন</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- মোডাল: নোট সম্পাদনা (Edit) -->
+    <div id="edit-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>নোট সম্পাদনা করুন</h3>
+                <button class="close-modal-btn" data-modal="edit-modal">
+                    <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </button>
+            </div>
+            <form id="edit-note-form">
+                <input type="hidden" id="edit-doc-id">
+                <div class="form-group">
+                    <label for="edit-title">শিরোনাম</label>
+                    <input type="text" id="edit-title" required placeholder="শিরোনাম লিখুন">
+                </div>
+                <div class="form-group">
+                    <label for="edit-description">বিবরণ</label>
+                    <textarea id="edit-description" rows="5" required placeholder="নোটের বিস্তারিত লিখুন"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel-btn close-modal-btn" data-modal="edit-modal">বাতিল</button>
+                    <button type="submit" id="edit-submit-btn" class="primary-btn">আপডেট করুন</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- মোডাল: ডিলিট কনফার্মেশন -->
+    <div id="delete-modal" class="modal-overlay hidden">
+        <div class="modal-card confirm-card">
+            <div class="modal-header">
+                <h3>নোটটি মুছে ফেলবেন?</h3>
+            </div>
+            <p class="confirm-text">এই নোটটি স্থায়ীভাবে মুছে যাবে। আপনি কি নিশ্চিত?</p>
+            <div class="modal-footer">
+                <button type="button" class="cancel-btn close-modal-btn" data-modal="delete-modal">বাতিল</button>
+                <button type="button" id="confirm-delete-btn" class="danger-btn">মুছে ফেলুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- টোস্ট নোটিফিকেশন কন্টেইনার -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- মূল অ্যাপ্লিকেশন স্ক্রিপ্ট -->
+    <script type="module" src="notepad.js"></script>
+</body>
+</html>
