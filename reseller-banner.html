@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff6a00">
+    <title>রিসেলার ব্যানার ব্যবস্থাপনা</title>
+    <link rel="stylesheet" href="reseller-banner.css">
+</head>
+<body>
+    <!-- হেডার সেকশন -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <img src="https://seraproduct.com/photo/logo.png" alt="সেরা প্রোডাক্ট লোগো" class="brand-logo">
+                <h1 class="panel-title">রিসেলার ব্যানার ব্যবস্থাপনা</h1>
+            </div>
+            <div class="user-info-area">
+                <span id="userBadge" class="user-badge loading-badge">যাচাই করা হচ্ছে...</span>
+                <span id="userEmail" class="user-email"></span>
+                <button id="logoutBtn" class="btn-logout" title="লগআউট">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    লগআউট
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- মূল কন্টেন্ট -->
+    <main class="main-container">
+        <!-- ব্যানার আপলোড/তৈরি সেকশন -->
+        <section class="card upload-card">
+            <h2 class="section-heading" id="formTitle">নতুন ব্যানার যোগ করুন</h2>
+            <form id="bannerForm">
+                <input type="hidden" id="editBannerId" value="">
+                
+                <div class="form-group">
+                    <label class="form-label">ছবি নির্বাচন করুন</label>
+                    <div class="dimension-notice">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                        <span>প্রস্তাবিত ব্যানারের মাপ: <strong>981×363 পিক্সেল</strong></span>
+                    </div>
+                    <input type="file" id="bannerImageFile" accept="image/*" class="file-input">
+                    <div class="preview-container" id="imagePreviewContainer" style="display: none;">
+                        <img id="imagePreview" src="" alt="ব্যানার প্রিভিউ">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="clickLinkInput">ব্যানারে ক্লিক করলে যে ঠিকানায় যাবে</label>
+                    <input type="url" id="clickLinkInput" class="text-input" placeholder="https://yourclicklink.com/......." required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="saveBannerBtn" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                        <span id="saveBtnText">সংরক্ষণ করুন</span>
+                    </button>
+                    <button type="button" id="cancelEditBtn" class="btn btn-secondary" style="display: none;">বাতিল করুন</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- ব্যানার লিস্ট সেকশন -->
+        <section class="card list-card">
+            <div class="list-header">
+                <h2 class="section-heading">সকল ব্যানার তালিকা</h2>
+                <button id="refreshBtn" class="btn-icon" title="রিফ্রেশ করুন">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                </button>
+            </div>
+            
+            <div id="bannerGrid" class="banner-grid">
+                <!-- ডায়নামিক ব্যানার কার্ড এখানে আসবে -->
+            </div>
+
+            <div class="load-more-container">
+                <button id="loadMoreBtn" class="btn btn-secondary" style="display: none;">আরও দেখুন</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- লোডিং ওভারলে -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner-box">
+            <div class="spinner"></div>
+            <p id="loadingText">লোড হচ্ছে...</p>
+        </div>
+    </div>
+
+    <!-- ডিলিট কনফার্মেশন মডাল -->
+    <div id="deleteModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3 class="modal-title">নিশ্চিতকরণ</h3>
+            <p class="modal-text">আপনি কি এই ব্যানারটি মুছে ফেলতে চান?</p>
+            <div class="modal-actions">
+                <button id="confirmDeleteBtn" class="btn btn-danger">মুছে ফেলুন</button>
+                <button id="cancelDeleteBtn" class="btn btn-secondary">বাতিল</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs & App Script -->
+    <script type="module" src="reseller-banner.js"></script>
+</body>
+</html>
