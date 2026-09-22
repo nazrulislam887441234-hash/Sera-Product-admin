@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>পণ্য যোগ করুন - SERA PRODUCT Admin</title>
+    <link rel="icon" type="image/png" href="https://seraproduct.com/photo/logo.png">
+    <link rel="stylesheet" href="product-upload.css">
+</head>
+<body>
+
+    <!-- Full Screen Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p id="loadingText">অ্যাক্সেস যাচাই করা হচ্ছে...</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Header Section -->
+    <header class="admin-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <img src="https://seraproduct.com/photo/logo.png" alt="Sera Product Logo" class="logo-img">
+                <span class="brand-name">SERA PRODUCT</span>
+            </div>
+            <div class="user-info-area">
+                <span id="userRoleBadge" class="role-badge">যাচাই হচ্ছে...</span>
+                <span id="userEmailText" class="user-email">...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="admin-main">
+        <div class="page-title-box">
+            <h1>পণ্য যোগ করুন</h1>
+            <p>নতুন পণ্যের তথ্য পূরণ করে সংরক্ষণ করুন</p>
+        </div>
+
+        <form id="productUploadForm" class="product-form">
+            
+            <!-- ১. পণ্যের ছবি -->
+            <section class="form-section">
+                <h2>১. পণ্যের ছবি</h2>
+                <div class="form-group">
+                    <label for="productImagesInput" class="file-drop-area">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        <span>ছবিগুলো নির্বাচন করুন (সর্বোচ্চ ১০টি)</span>
+                        <input type="file" id="productImagesInput" accept="image/*" multiple style="display: none;">
+                    </label>
+                    <div id="imagePreviewGrid" class="image-preview-grid"></div>
+                </div>
+            </section>
+
+            <!-- ২. ক্যাটাগরি -->
+            <section class="form-section">
+                <h2>২. ক্যাটাগরি</h2>
+                <div class="form-group">
+                    <label for="categorySelect">ক্যাটাগরি নির্বাচন করুন *</label>
+                    <select id="categorySelect" required>
+                        <option value="">ক্যাটাগরি লোড হচ্ছে...</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- ৩. পণ্যের তথ্য -->
+            <section class="form-section">
+                <h2>৩. পণ্যের সাধারণ তথ্য</h2>
+                <div class="form-group">
+                    <label for="productNameInput">পণ্যের নাম *</label>
+                    <input type="text" id="productNameInput" required placeholder="পণ্যের নাম লিখুন">
+                </div>
+                <div class="form-group">
+                    <label for="productDescriptionInput">পণ্যের বিবরণ *</label>
+                    <textarea id="productDescriptionInput" rows="5" required placeholder="পণ্যের বিস্তারিত বিবরণ লিখুন"></textarea>
+                </div>
+            </section>
+
+            <!-- ৪. মূল্য -->
+            <section class="form-section">
+                <h2>৪. মূল্য নির্ধারণ</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="customerPriceInput">গ্রাহকের মূল্য *</label>
+                        <input type="number" id="customerPriceInput" min="0" step="any" required placeholder="০.০০">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerOldPriceInput">গ্রাহকের পুরোনো মূল্য</label>
+                        <input type="number" id="customerOldPriceInput" min="0" step="any" placeholder="০.০০">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="resellerPriceInput">রিসেলারের মূল্য *</label>
+                        <input type="number" id="resellerPriceInput" min="0" step="any" required placeholder="০.০০">
+                    </div>
+                    <div class="form-group">
+                        <label for="resellerOldPriceInput">রিসেলারের পুরোনো মূল্য</label>
+                        <input type="number" id="resellerOldPriceInput" min="0" step="any" placeholder="০.০০">
+                    </div>
+                </div>
+            </section>
+
+            <!-- ৫. অতিরিক্ত তথ্য -->
+            <section class="form-section">
+                <h2>৫. অতিরিক্ত তথ্য</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="skuInput">এসকেইউ (SKU)</label>
+                        <input type="text" id="skuInput" placeholder="ঐচ্ছিক SKU">
+                    </div>
+                    <div class="form-group">
+                        <label for="warrantyInput">ওয়ারেন্টি শেষ সময়</label>
+                        <input type="datetime-local" id="warrantyInput">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="offerTimeInput">অফার শেষ সময়</label>
+                        <input type="datetime-local" id="offerTimeInput">
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label class="switch-label">ফ্রি ডেলিভারি</label>
+                        <label class="switch">
+                            <input type="checkbox" id="freeDeliveryToggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ৬. ভ্যারিয়েন্ট -->
+            <section class="form-section">
+                <h2>৬. প্রোডাক্ট ভ্যারিয়েন্ট (ঐচ্ছিক)</h2>
+                <div id="variantsContainer"></div>
+                <button type="button" id="addVariantGroupBtn" class="btn-secondary">+ নতুন ভ্যারিয়েন্ট গ্রুপ যোগ করুন</button>
+            </section>
+
+            <!-- ৭. রিভিউ ভিডিও -->
+            <section class="form-section">
+                <h2>৭. রিভিউ ভিডিও</h2>
+                <div class="form-group">
+                    <label for="reviewVideoInput">রিভিউ ভিডিও লিংক (ইউটিউব)</label>
+                    <input type="url" id="reviewVideoInput" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+                <div id="videoPreviewContainer" class="video-preview-container" style="display: none;">
+                    <iframe id="videoPreviewIframe" src="" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <!-- ৮. সংরক্ষণ -->
+            <div class="form-actions">
+                <button type="submit" id="saveProductBtn" class="btn-primary">পণ্য সংরক্ষণ করুন</button>
+            </div>
+
+        </form>
+
+        <!-- JSON Output Section -->
+        <div id="jsonOutputSection" class="json-section" style="display: none;">
+            <h3>সফলভাবে সংরক্ষিত পণ্যের JSON</h3>
+            <pre><code id="jsonOutputCode"></code></pre>
+            <button type="button" id="copyJsonBtn" class="btn-secondary">JSON কপি</button>
+        </div>
+    </main>
+
+    <!-- App Script -->
+    <script type="module" src="product-upload.js"></script>
+</body>
+</html>
