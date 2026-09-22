@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অ্যাডমিন প্যানেল লগইন - SERA PRODUCT</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- লোডিং স্ক্রিন (অ্যাপ্লিকেশন ইনিশিয়ালাইজেশনের সময় দেখাবে) -->
+    <div id="initial-loader" class="initial-loader">
+        <div class="loader-content">
+            <svg class="spinner-svg" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            </svg>
+            <p>SERA PRODUCT অ্যাক্সেস যাচাই করা হচ্ছে...</p>
+        </div>
+    </div>
+
+    <!-- মূল লগইন কন্টেইনার -->
+    <div class="login-wrapper">
+        <div class="login-card">
+            
+            <!-- লোগো এবং হেডার -->
+            <div class="brand-header">
+                <img src="https://seraproduct.com/photo/logo.png" alt="Sera Product Logo" class="brand-logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'40\'><text x=\'0\' y=\'25\' font-size=\'20\' fill=\'%23FF6B35\' font-weight=\'bold\'>SERA PRODUCT</text></svg>';">
+                <h1 class="panel-title">অ্যাডমিন প্যানেল</h1>
+                <p class="panel-subtitle">দয়া করে আপনার অ্যাকাউন্টে প্রবেশ করুন</p>
+            </div>
+
+            <!-- এরর মেসেজ বক্স -->
+            <div id="error-alert" class="error-alert hidden">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                <span id="error-message">ত্রুটি বার্তা এখানে দেখাবে</span>
+            </div>
+
+            <!-- লগইন ফর্ম -->
+            <form id="login-form" novalidate>
+                
+                <!-- ইমেইল ফিল্ড -->
+                <div class="form-group">
+                    <label for="email">ইমেইল ঠিকানা</label>
+                    <div class="input-with-icon">
+                        <span class="field-icon">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-6V6l8 5 8-2v2z"/></svg>
+                        </span>
+                        <input type="email" id="email" required placeholder="admin@seraproduct.com" autocomplete="email">
+                    </div>
+                </div>
+
+                <!-- পাসওয়ার্ড ফিল্ড -->
+                <div class="form-group">
+                    <label for="password">পাসওয়ার্ড</label>
+                    <div class="input-with-icon">
+                        <span class="field-icon">
+                            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                        </span>
+                        <input type="password" id="password" required placeholder="••••••••" autocomplete="current-password">
+                        <button type="button" id="toggle-password" class="toggle-password-btn" aria-label="পাসওয়ার্ড প্রদর্শন করুন">
+                            <!-- Eye Icon -->
+                            <svg id="eye-icon" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- সাবমিট বাটন -->
+                <button type="submit" id="login-btn" class="login-btn">
+                    <span id="btn-text">লগইন করুন</span>
+                    <svg id="btn-loader" class="btn-spinner hidden" viewBox="0 0 50 50">
+                        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                    </svg>
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase এবং মূল অ্যাপ লজিক স্ক্রিপ্ট -->
+    <script type="module" src="index.js"></script>
+</body>
+</html>
