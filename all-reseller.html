@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff6a00">
+    <title>রিসেলার ব্যবস্থাপনা - SERA PRODUCT Panel</title>
+    <link rel="icon" href="https://seraproduct.com/photo/logo.png">
+    <link rel="stylesheet" href="all-reseller.css">
+</head>
+<body>
+
+    <!-- অথেন্টিকেশন ও সিকিউরিটি লোডিং স্ক্রিন -->
+    <div id="auth-loader" class="auth-loader">
+        <div class="loader-content">
+            <svg class="spinner-svg" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            </svg>
+            <p>রিসেলার প্যানেল অ্যাক্সেস যাচাই করা হচ্ছে...</p>
+        </div>
+    </div>
+
+    <!-- মূল অ্যাপ্লিকেশন কন্টেইনার -->
+    <div id="app-container" class="app-container hidden">
+        
+        <!-- হেডার সেকশন -->
+        <header class="app-header">
+            <div class="header-left">
+                <img src="https://seraproduct.com/photo/logo.png" alt="Sera Product Logo" class="brand-logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'40\'><text x=\'0\' y=\'25\' font-size=\'20\' fill=\'%23FF6A00\' font-weight=\'bold\'>SERA PRODUCT</text></svg>';">
+                <div class="header-title-wrap">
+                    <h1>রিসেলার ব্যবস্থাপনা</h1>
+                    <span id="user-badge" class="role-badge">ADMIN</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <span id="user-email-display" class="user-email">user@seraproduct.com</span>
+                <button id="logout-btn" class="logout-btn" title="লগআউট">
+                    <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+                    <span>লগআউট</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- মূল কন্টেন্ট এরিয়া -->
+        <main class="main-content">
+            
+            <!-- সাবটাইটেল এবং সার্চ বার -->
+            <div class="content-topbar">
+                <div class="subtitle-wrap">
+                    <h2>রিসেলারদের তথ্য দেখুন এবং অ্যাকাউন্ট পরিচালনা করুন</h2>
+                    <p>নিরাপদ এবং দ্রুত রিসেলার অ্যাকাউন্ট কন্ট্রোল প্যানেল</p>
+                </div>
+                <div class="search-box-wrap">
+                    <span class="search-icon">
+                        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    </span>
+                    <input type="text" id="search-input" placeholder="নাম, ইমেইল, ফোন অথবা UID দিয়ে খুঁজুন">
+                </div>
+            </div>
+
+            <!-- রিসেলার টেবিল / গ্রিড কন্টেইনার -->
+            <div class="table-responsive-wrap">
+                <table class="reseller-table" id="reseller-table">
+                    <thead>
+                        <tr>
+                            <th>নাম</th>
+                            <th>ইমেইল</th>
+                            <th>ফোন</th>
+                            <th>ইউআইডি (UID)</th>
+                            <th>অবস্থা</th>
+                            <th>কাজ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reseller-tbody">
+                        <!-- ডাইনামিক রিসেলার ডেটা এখানে লোড হবে -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- মোবাইল রেসপন্সিভ কার্ড কন্টেইনার -->
+            <div id="mobile-cards-container" class="mobile-cards-container">
+                <!-- মোবাইল কার্ড এখানে রেন্ডার হবে -->
+            </div>
+
+            <!-- লোডিং ও এম্পটি স্টেট -->
+            <div id="loading-state" class="center-state">
+                <svg class="spinner-svg" viewBox="0 0 50 50">
+                    <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                </svg>
+                <p>রিসেলারদের তথ্য লোড হচ্ছে...</p>
+            </div>
+
+            <div id="empty-state" class="center-state hidden">
+                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                <p id="empty-state-text">কোনো রিসেলার পাওয়া যায়নি</p>
+            </div>
+
+            <!-- আরও দেখুন লোড মোর সেকশন -->
+            <div class="load-more-wrap" id="load-more-wrap">
+                <button id="load-more-btn" class="secondary-btn">
+                    <span>আরও দেখুন</span>
+                </button>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- মোডাল: রিসেলার সম্পাদনা (Edit) -->
+    <div id="edit-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>রিসেলার তথ্য সম্পাদনা করুন</h3>
+                <button class="close-modal-btn" data-modal="edit-modal">
+                    <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </button>
+            </div>
+            <form id="edit-reseller-form">
+                <input type="hidden" id="edit-original-id">
+                <div class="form-group">
+                    <label for="edit-name">নাম</label>
+                    <input type="text" id="edit-name" required placeholder="নাম লিখুন">
+                </div>
+                <div class="form-group">
+                    <label for="edit-email">ইমেইল</label>
+                    <input type="email" id="edit-email" required placeholder="ইমেইল লিখুন">
+                </div>
+                <div class="form-group">
+                    <label for="edit-phone">ফোন নম্বর</label>
+                    <input type="text" id="edit-phone" required placeholder="ফোন নম্বর লিখুন">
+                </div>
+                <div class="form-group">
+                    <label for="edit-uid">ইউআইডি (UID)</label>
+                    <input type="text" id="edit-uid" required placeholder="ফায়ারবেস ইউআইডি">
+                </div>
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="edit-active"> সক্রিয় অবস্থা (Active)
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel-btn close-modal-btn" data-modal="edit-modal">বাতিল</button>
+                    <button type="submit" id="edit-submit-btn" class="primary-btn">আপডেট করুন</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- মোডাল: ডিলিট কনফার্মেশন -->
+    <div id="delete-modal" class="modal-overlay hidden">
+        <div class="modal-card confirm-card">
+            <div class="modal-header">
+                <h3>রিসেলারটি মুছে ফেলবেন?</h3>
+            </div>
+            <p class="confirm-text">এই তথ্য স্থায়ীভাবে মুছে যাবে। আপনি কি নিশ্চিত?</p>
+            <div class="modal-footer">
+                <button type="button" class="cancel-btn close-modal-btn" data-modal="delete-modal">বাতিল</button>
+                <button type="button" id="confirm-delete-btn" class="danger-btn">মুছে ফেলুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- টোস্ট নোটিফিকেশন কন্টেইনার -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- মূল অ্যাপ্লিকেশন স্ক্রিপ্ট -->
+    <script type="module" src="all-reseller.js"></script>
+</body>
+</html>
