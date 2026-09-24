@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>সব ট্রানজেকশন ইতিহাস - সেরা প্রোডাক্ট</title>
+    <link rel="icon" type="image/png" href="https://seraproduct.com/photo/logo.png">
+    <style>
+        :root {
+            --primary: #ff6a00;
+            --primary-dark: #e05d00;
+            --primary-light: #fff2ec;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --danger: #ef4444;
+            --danger-hover: #dc2626;
+            --success: #10b981;
+            --radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --transition: all 0.2s ease-in-out;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 12px rgba(255, 106, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            background: #ffffff;
+            border-radius: 50%;
+            padding: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .brand-title h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-title p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .user-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            backdrop-filter: blur(4px);
+        }
+
+        .user-badge {
+            background: #ffffff;
+            color: var(--primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .user-email {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Main Container */
+        main {
+            max-width: 1400px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Control Panel / Search Section */
+        .control-panel {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .search-mode-tabs {
+            display: flex;
+            gap: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .search-form {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input-group {
+            flex: 1;
+            min-width: 280px;
+            position: relative;
+        }
+
+        .search-input-group input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-input-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.1);
+        }
+
+        .search-input-group svg {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            fill: var(--text-muted);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+        }
+        .btn-danger:hover {
+            background: var(--danger-hover);
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .results-count {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Transaction Grid / List */
+        .transaction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .transaction-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .transaction-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .card-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .card-title-group h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .card-title-group span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .balance-badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .card-body-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .detail-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--text-main);
+            text-align: right;
+            word-break: break-all;
+        }
+
+        .note-box {
+            background: #f1f5f9;
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #334155;
+            border-left: 3px solid var(--primary);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .card-actions .btn {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.8rem;
+            flex: 1;
+            min-width: calc(50% - 0.25rem);
+        }
+
+        /* Load More Section */
+        .load-more-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 550px;
+            border-radius: var(--radius);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .modal-close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            background: #f8fafc;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        /* Form Controls */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.65rem 0.85rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.1);
+        }
+
+        /* Skeleton Loader */
+        .skeleton-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        .skeleton-line {
+            height: 1rem;
+            background: #e2e8f0;
+            border-radius: 4px;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Empty State */
+        .empty-state {
+            grid-column: 1 / -1;
+            background: var(--card-bg);
+            padding: 3rem 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .empty-state svg {
+            width: 64px;
+            height: 64px;
+            fill: var(--text-muted);
+        }
+
+        .empty-state h3 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .toast {
+            background: #1e293b;
+            color: #ffffff;
+            padding: 0.85rem 1.25rem;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease forwards;
+            max-width: 350px;
+        }
+
+        .toast.success { background: var(--success); }
+        .toast.error { background: var(--danger); }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .transaction-grid {
+                grid-template-columns: 1fr;
+            }
+            .search-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .action-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="brand-section">
+                <img src="https://seraproduct.com/photo/logo.png" alt="সেরা প্রোডাক্ট লোগো" class="brand-logo">
+                <div class="brand-title">
+                    <h1>সেরা প্রোডাক্ট</h1>
+                    <p>সব ট্রানজেকশন ইতিহাস</p>
+                </div>
+            </div>
+            <div class="user-meta" id="userMetaSection" style="display: none;">
+                <span class="user-badge" id="userRoleBadge">লোড হচ্ছে...</span>
+                <span class="user-email" id="userEmailDisplay">...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Control & Search Panel -->
+        <section class="control-panel">
+            <div class="search-mode-tabs">
+                <button type="button" class="tab-btn active" id="tabUid" onclick="switchSearchMode('uid')">রিসেলারের UID দিয়ে খুঁজুন</button>
+                <button type="button" class="tab-btn" id="tabTxId" onclick="switchSearchMode('txid')">ট্রানজেকশন আইডি দিয়ে খুঁজুন</button>
+            </div>
+
+            <!-- UID Search Form -->
+            <form id="searchUidForm" class="search-form" onsubmit="handleUidSearch(event)">
+                <div class="search-input-group">
+                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    <input type="text" id="uidSearchInput" placeholder="রিসেলারের UID দিয়ে খুঁজুন..." required>
+                </div>
+                <button type="submit" class="btn" id="uidSearchBtn">
+                    <svg style="width:16px;height:16px;fill:currentColor;" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    খুঁজুন
+                </button>
+                <button type="button" class="btn btn-outline" id="resetSearchBtn" onclick="resetSearch()" style="display: none;">সব ট্রানজেকশন দেখুন</button>
+            </form>
+
+            <!-- Transaction ID Search Form -->
+            <form id="searchTxIdForm" class="search-form" style="display: none;" onsubmit="handleTxIdSearch(event)">
+                <div class="search-input-group">
+                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    <input type="text" id="txIdSearchInput" placeholder="ট্রানজেকশন আইডি দিয়ে খুঁজুন..." required>
+                </div>
+                <button type="submit" class="btn" id="txIdSearchBtn">
+                    <svg style="width:16px;height:16px;fill:currentColor;" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    খুঁজুন
+                </button>
+                <button type="button" class="btn btn-outline" id="resetTxSearchBtn" onclick="resetSearch()" style="display: none;">সব ট্রানজেকশন দেখুন</button>
+            </form>
+
+            <div class="action-bar">
+                <div class="results-count" id="resultsCountText">ট্রানজেকশন লোড হচ্ছে...</div>
+                <button type="button" class="btn btn-outline" onclick="loadTransactions()">
+                    <svg style="width:16px;height:16px;fill:currentColor;" viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                    রিফ্রেশ করুন
+                </button>
+            </div>
+        </section>
+
+        <!-- Transaction List Grid -->
+        <section class="transaction-grid" id="transactionGrid">
+            <!-- Skeleton items loaded initially -->
+            <div class="skeleton-card"><div class="skeleton-line" style="width: 60%;"></div><div class="skeleton-line" style="width: 80%;"></div><div class="skeleton-line" style="width: 40%;"></div></div>
+            <div class="skeleton-card"><div class="skeleton-line" style="width: 60%;"></div><div class="skeleton-line" style="width: 80%;"></div><div class="skeleton-line" style="width: 40%;"></div></div>
+            <div class="skeleton-card"><div class="skeleton-line" style="width: 60%;"></div><div class="skeleton-line" style="width: 80%;"></div><div class="skeleton-line" style="width: 40%;"></div></div>
+        </section>
+
+        <!-- Load More Container -->
+        <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+            <button type="button" class="btn" id="loadMoreBtn" onclick="loadMoreTransactions()">আরও দেখুন</button>
+        </div>
+    </main>
+
+    <!-- Reseller Info Modal -->
+    <div class="modal-overlay" id="resellerModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>রিসেলারের তথ্য</h2>
+                <button type="button" class="modal-close-btn" onclick="closeModal('resellerModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="resellerModalBody">
+                <p>লোড হচ্ছে...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeModal('resellerModal')">বন্ধ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Transaction Modal -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>ট্রানজেকশন এডিট করুন</h2>
+                <button type="button" class="modal-close-btn" onclick="closeModal('editModal')">&times;</button>
+            </div>
+            <form onsubmit="handleEditSubmit(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="editDocId">
+                    <div class="form-group">
+                        <label>নাম</label>
+                        <input type="text" id="editName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>ট্রানজেকশন আইডি</label>
+                        <input type="text" id="editTransectionId" required>
+                    </div>
+                    <div class="form-group">
+                        <label>রিসেলার UID</label>
+                        <input type="text" id="editUid" required>
+                    </div>
+                    <div class="form-group">
+                        <label>আগের ব্যালেন্স (৳)</label>
+                        <input type="number" step="any" id="editOldBalance" required>
+                    </div>
+                    <div class="form-group">
+                        <label>বর্তমান ব্যালেন্স (৳)</label>
+                        <input type="number" step="any" id="editBalance" required>
+                    </div>
+                    <div class="form-group">
+                        <label>নির্দেশনা / নোট</label>
+                        <textarea id="editNote" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('editModal')">বাতিল</button>
+                    <button type="submit" class="btn" id="saveEditBtn">সংরক্ষণ করুন</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-container">
+            <div class="modal-header" style="background: var(--danger);">
+                <h2>ট্রানজেকশন মুছে ফেলুন</h2>
+                <button type="button" class="modal-close-btn" onclick="closeModal('deleteModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>আপনি কি এই ট্রানজেকশনটি স্থায়ীভাবে মুছে ফেলতে চান?</p>
+                <input type="hidden" id="deleteDocId">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeModal('deleteModal')">বাতিল</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn" onclick="executeDelete()">ডিলিট করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Firebase SDK Imports -->
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { 
+        getFirestore, collection, doc, getDoc, getDocs, deleteDoc, updateDoc,
+        query, orderBy, limit, startAfter, where 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        const firebaseConfig = {
+  apiKey: "AIzaSyBRSt2aoSJ-lumYAWGAXE6ncui7__TqJ4E",
+  authDomain: "sera-product.firebaseapp.com",
+  projectId: "sera-product",
+  storageBucket: "sera-product.firebasestorage.app",
+  messagingSenderId: "516762224598",
+  appId: "1:516762224598:web:b6a571f355a8a4a97c0677",
+  measurementId: "G-RLMWH43FXX"
+};
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const OWNER_EMAILS = [
+            "shohidhossain@gmail.com",
+            "nazrulislam887441234@gmail.com",
+            "support.seraproduct@gmail.com"
+        ];
+
+        let lastVisible = null;
+        let currentSearchMode = 'uid'; // 'uid' or 'txid'
+        let activeSearchQuery = null; // store current search criteria
+        let isLoading = false;
+        const resellerCache = new Map();
+
+        window.showToast = function(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 4000);
+        };
+
+        window.switchSearchMode = function(mode) {
+            currentSearchMode = mode;
+            document.getElementById('tabUid').classList.toggle('active', mode === 'uid');
+            document.getElementById('tabTxId').classList.toggle('active', mode === 'txid');
+            document.getElementById('searchUidForm').style.display = mode === 'uid' ? 'flex' : 'none';
+            document.getElementById('searchTxIdForm').style.display = mode === 'txid' ? 'flex' : 'none';
+        };
+
+        window.formatBalance = function(amount) {
+            if (amount === undefined || amount === null || isNaN(amount)) return '৳ ০';
+            return '৳ ' + Number(amount).toLocaleString('bn-BD');
+        };
+
+        window.formatTimestamp = function(timestamp) {
+            if (!timestamp) return 'সময় পাওয়া যায়নি';
+            let date;
+            if (timestamp.toDate && typeof timestamp.toDate === 'function') {
+                date = timestamp.toDate();
+            } else if (timestamp.seconds) {
+                date = new Date(timestamp.seconds * 1000);
+            } else {
+                date = new Date(timestamp);
+            }
+
+            if (isNaN(date.getTime())) return 'সময় পাওয়া যায়নি';
+
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            };
+            
+            // Format in Bengali locale representation
+            return date.toLocaleDateString('bn-BD', options);
+        };
+
+        // Authentication State Observer
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = "https://admin.seraproduct.com";
+                return;
+            }
+
+            const email = user.email;
+            let isOwner = OWNER_EMAILS.includes(email);
+            let isAdminValid = false;
+
+            if (!isOwner) {
+                try {
+                    const adminRef = doc(db, "admins", user.uid);
+                    const adminSnap = await getDoc(adminRef);
+                    if (adminSnap.exists()) {
+                        const data = adminSnap.data();
+                        if (data.active === true && data.email === email) {
+                            isAdminValid = true;
+                        }
+                    }
+                } catch (err) {
+                    console.error("Admin verification error:", err);
+                }
+            }
+
+            if (!isOwner && !isAdminValid) {
+                window.location.href = "https://admin.seraproduct.com";
+                return;
+            }
+
+            // Render Header User Info
+            document.getElementById('userMetaSection').style.display = 'flex';
+            document.getElementById('userRoleBadge').textContent = isOwner ? 'Owner' : 'Admin';
+            document.getElementById('userEmailDisplay').textContent = email;
+
+            // Initial Load
+            loadTransactions();
+        });
+
+        // Load Transactions (Default / Pagination)
+        window.loadTransactions = async function(isMore = false) {
+            if (isLoading) return;
+            isLoading = true;
+
+            const grid = document.getElementById('transactionGrid');
+            const loadMoreBtn = document.getElementById('loadMoreContainer');
+            
+            if (!isMore) {
+                grid.innerHTML = '<div class="skeleton-card"><div class="skeleton-line" style="width: 60%;"></div><div class="skeleton-line" style="width: 80%;"></div></div>'.repeat(3);
+                lastVisible = null;
+                activeSearchQuery = null;
+                document.getElementById('resetSearchBtn').style.display = 'none';
+                document.getElementById('resetTxSearchBtn').style.display = 'none';
+            }
+
+            try {
+                let q;
+                const tranCollection = collection(db, "transection");
+
+                if (activeSearchQuery && activeSearchQuery.type === 'uid') {
+                    if (isMore && lastVisible) {
+                        q = query(tranCollection, where("uid", "==", activeSearchQuery.uid), orderBy("createdAt", "desc"), startAfter(lastVisible), limit(20));
+                    } else {
+                        q = query(tranCollection, where("uid", "==", activeSearchQuery.uid), orderBy("createdAt", "desc"), limit(20));
+                    }
+                } else {
+                    if (isMore && lastVisible) {
+                        q = query(tranCollection, orderBy("createdAt", "desc"), startAfter(lastVisible), limit(20));
+                    } else {
+                        q = query(tranCollection, orderBy("createdAt", "desc"), limit(20));
+                    }
+                }
+
+                const snapshot = await getDocs(q);
+                
+                if (!isMore) {
+                    grid.innerHTML = '';
+                }
+
+                if (snapshot.empty && !isMore) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                            <h3>কোনো ট্রানজেকশন ইতিহাস পাওয়া যায়নি।</h3>
+                        </div>
+                    `;
+                    loadMoreBtn.style.display = 'none';
+                    document.getElementById('resultsCountText').textContent = 'মোট ট্রানজেকশন: ০';
+                    isLoading = false;
+                    return;
+                }
+
+                lastVisible = snapshot.docs[snapshot.docs.length - 1];
+
+                snapshot.forEach(docSnap => {
+                    const data = docSnap.data();
+                    const card = createTransactionCard(docSnap.id, data);
+                    grid.appendChild(card);
+                });
+
+                if (snapshot.docs.length < 20) {
+                    loadMoreBtn.style.display = 'none';
+                } else {
+                    loadMoreBtn.style.display = 'flex';
+                }
+
+                document.getElementById('resultsCountText').textContent = `দেখানো হচ্ছে: ${grid.children.length} টি ট্রানজেকশন`;
+
+            } catch (err) {
+                console.error("Load error:", err);
+                showToast("তথ্য লোড করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।", "error");
+            } finally {
+                isLoading = false;
+            }
+        };
+
+        window.loadMoreTransactions = function() {
+            loadTransactions(true);
+        };
+
+        // Create Transaction Card DOM Element
+        function createTransactionCard(docId, data) {
+            const card = document.createElement('div');
+            card.className = 'transaction-card';
+            card.id = `card-${docId}`;
+
+            const formattedTime = formatTimestamp(data.createdAt);
+            const oldBal = formatBalance(data.oldBalance);
+            const newBal = formatBalance(data.balance);
+
+            card.innerHTML = `
+                <div class="card-header-row">
+                    <div class="card-title-group">
+                        <h3>${escapeHtml(data.name || 'নামহীন রিসেলার')}</h3>
+                        <span>ID: ${escapeHtml(data.transectionId || 'N/A')}</span>
+                    </div>
+                    <div class="balance-badge">${newBal}</div>
+                </div>
+                <div class="card-body-details">
+                    <div class="detail-row">
+                        <span class="detail-label">ট্রানজেকশন আইডি:</span>
+                        <span class="detail-value">${escapeHtml(data.transectionId || 'N/A')}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">তৈরি করার সময়:</span>
+                        <span class="detail-value">${formattedTime}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">আগের ব্যালেন্স:</span>
+                        <span class="detail-value">${oldBal}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">রিসেলার UID:</span>
+                        <span class="detail-value" style="font-size:0.8rem;">${escapeHtml(data.uid || 'N/A')}</span>
+                    </div>
+                    ${data.note ? `<div class="note-box"><strong>নির্দেশনা:</strong> ${escapeHtml(data.note)}</div>` : ''}
+                </div>
+                <div class="card-actions">
+                    <button type="button" class="btn btn-outline" onclick="fetchResellerInfo('${escapeHtml(data.uid)}')">রিসেলারের তথ্য দেখুন</button>
+                    <button type="button" class="btn btn-outline" onclick="openEditModal('${docId}', ${JSON.stringify(data).replace(/"/g, '&quot;')})">এডিট</button>
+                    <button type="button" class="btn btn-danger" onclick="openDeleteModal('${docId}')">ডিলিট</button>
+                    <button type="button" class="btn btn-outline" onclick="copyJsonData(${JSON.stringify(data).replace(/"/g, '&quot;')})">তথ্য কপি করুন</button>
+                </div>
+            `;
+            return card;
+        }
+
+        // UID Search Handler
+        window.handleUidSearch = async function(event) {
+            event.preventDefault();
+            const uidVal = document.getElementById('uidSearchInput').value.trim();
+            if (!uidVal) return;
+
+            activeSearchQuery = { type: 'uid', uid: uidVal };
+            document.getElementById('resetSearchBtn').style.display = 'inline-flex';
+            lastVisible = null;
+            await loadTransactions(false);
+        };
+
+        // Transaction ID Search Handler
+        window.handleTxIdSearch = async function(event) {
+            event.preventDefault();
+            const txIdVal = document.getElementById('txIdSearchInput').value.trim();
+            if (!txIdVal) return;
+
+            const grid = document.getElementById('transactionGrid');
+            grid.innerHTML = '<div class="skeleton-card"><div class="skeleton-line"></div></div>';
+            document.getElementById('loadMoreContainer').style.display = 'none';
+            document.getElementById('resetTxSearchBtn').style.display = 'inline-flex';
+
+            try {
+                const tranCollection = collection(db, "transection");
+                const q = query(tranCollection, where("transectionId", "==", txIdVal), limit(1));
+                const snapshot = await getDocs(q);
+
+                grid.innerHTML = '';
+                if (snapshot.empty) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                            <h3>এই ট্রানজেকশন আইডির কোনো তথ্য পাওয়া যায়নি।</h3>
+                        </div>
+                    `;
+                    document.getElementById('resultsCountText').textContent = 'কোনো ফলাফল নেই';
+                    return;
+                }
+
+                snapshot.forEach(docSnap => {
+                    grid.appendChild(createTransactionCard(docSnap.id, docSnap.data()));
+                });
+                document.getElementById('resultsCountText').textContent = '১টি ট্রানজেকশন পাওয়া গেছে';
+
+            } catch (err) {
+                console.error("TxId search error:", err);
+                showToast("অনুসন্ধান করতে সমস্যা হয়েছে।", "error");
+            }
+        };
+
+        window.resetSearch = function() {
+            document.getElementById('uidSearchInput').value = '';
+            document.getElementById('txIdSearchInput').value = '';
+            document.getElementById('resetSearchBtn').style.display = 'none';
+            document.getElementById('resetTxSearchBtn').style.display = 'none';
+            activeSearchQuery = null;
+            lastVisible = null;
+            loadTransactions(false);
+        };
+
+        // Lazy Load Reseller Information
+        window.fetchResellerInfo = async function(uid) {
+            if (!uid) {
+                showToast("রিসেলার UID পাওয়া যায়নি।", "error");
+                return;
+            }
+
+            const modal = document.getElementById('resellerModal');
+            const body = document.getElementById('resellerModalBody');
+            body.innerHTML = '<p>রিসেলারের তথ্য লোড হচ্ছে...</p>';
+            modal.classList.add('active');
+
+            try {
+                let resellerData;
+                if (resellerCache.has(uid)) {
+                    resellerData = resellerCache.get(uid);
+                } else {
+                    const resellerRef = doc(db, "reseller", uid);
+                    const resellerSnap = await getDoc(resellerRef);
+                    if (!resellerSnap.exists()) {
+                        body.innerHTML = '<p>রিসেলারের কোনো তথ্য পাওয়া যায়নি।</p>';
+                        return;
+                    }
+                    resellerData = resellerSnap.data();
+                    resellerCache.set(uid, resellerData);
+                }
+
+                const activeText = resellerData.active === true ? 'চালু' : 'বন্ধ';
+                const verifiedText = resellerData.verified === true ? 'ভেরিফাইড' : 'ভেরিফাইড নয়';
+
+                body.innerHTML = `
+                    <div class="detail-row"><span class="detail-label">নাম:</span><span class="detail-value">${escapeHtml(resellerData.name || 'N/A')}</span></div>
+                    <div class="detail-row"><span class="detail-label">ফোন:</span><span class="detail-value">${escapeHtml(resellerData.phone || 'N/A')}</span></div>
+                    <div class="detail-row"><span class="detail-label">হোয়াটসঅ্যাপ:</span><span class="detail-value">${escapeHtml(resellerData.whatsApp || 'N/A')}</span></div>
+                    <div class="detail-row"><span class="detail-label">ইমেইল:</span><span class="detail-value">${escapeHtml(resellerData.email || 'N/A')}</span></div>
+                    <div class="detail-row"><span class="detail-label">অ্যাকাউন্ট:</span><span class="detail-value">${activeText}</span></div>
+                    <div class="detail-row"><span class="detail-label">ভেরিফিকেশন:</span><span class="detail-value">${verifiedText}</span></div>
+                `;
+
+            } catch (err) {
+                console.error("Reseller fetch error:", err);
+                body.innerHTML = '<p>রিসেলারের তথ্য লোড করতে সমস্যা হয়েছে। এই তথ্য দেখার অনুমতি আপনার নেই বা নেটওয়ার্ক ত্রুটি।</p>';
+            }
+        };
+
+        // Edit Transaction Functions
+        window.openEditModal = function(docId, data) {
+            document.getElementById('editDocId').value = docId;
+            document.getElementById('editName').value = data.name || '';
+            document.getElementById('editTransectionId').value = data.transectionId || '';
+            document.getElementById('editUid').value = data.uid || '';
+            document.getElementById('editOldBalance').value = data.oldBalance || 0;
+            document.getElementById('editBalance').value = data.balance || 0;
+            document.getElementById('editNote').value = data.note || '';
+            document.getElementById('editModal').classList.add('active');
+        };
+
+        window.handleEditSubmit = async function(event) {
+            event.preventDefault();
+            const docId = document.getElementById('editDocId').value;
+            const updatedData = {
+                name: document.getElementById('editName').value.trim(),
+                transectionId: document.getElementById('editTransectionId').value.trim(),
+                uid: document.getElementById('editUid').value.trim(),
+                oldBalance: Number(document.getElementById('editOldBalance').value),
+                balance: Number(document.getElementById('editBalance').value),
+                note: document.getElementById('editNote').value.trim()
+            };
+
+            if (!updatedData.name || !updatedData.transectionId || isNaN(updatedData.balance)) {
+                showToast("দয়া করে সঠিক তথ্য দিন।", "error");
+                return;
+            }
+
+            const btn = document.getElementById('saveEditBtn');
+            btn.disabled = true;
+            btn.textContent = "সংরক্ষণ হচ্ছে...";
+
+            try {
+                const docRef = doc(db, "transection", docId);
+                await updateDoc(docRef, updatedData);
+                showToast("ট্রানজেকশন তথ্য সফলভাবে আপডেট হয়েছে।");
+                closeModal('editModal');
+                loadTransactions(false);
+            } catch (err) {
+                console.error("Update error:", err);
+                showToast("তথ্য আপডেট করতে সমস্যা হয়েছে।", "error");
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "সংরক্ষণ করুন";
+            }
+        };
+
+        // Delete Transaction Functions
+        window.openDeleteModal = function(docId) {
+            document.getElementById('deleteDocId').value = docId;
+            document.getElementById('deleteModal').classList.add('active');
+        };
+
+        window.executeDelete = async function() {
+            const docId = document.getElementById('deleteDocId').value;
+            const btn = document.getElementById('confirmDeleteBtn');
+            btn.disabled = true;
+            btn.textContent = "ডিলিট হচ্ছে...";
+
+            try {
+                const docRef = doc(db, "transection", docId);
+                await deleteDoc(docRef);
+                showToast("ট্রানজেকশন সফলভাবে মুছে ফেলা হয়েছে।");
+                closeModal('deleteModal');
+                loadTransactions(false);
+            } catch (err) {
+                console.error("Delete error:", err);
+                showToast("তথ্য মুছে ফেলতে সমস্যা হয়েছে।", "error");
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "ডিলিট করুন";
+            }
+        };
+
+        // JSON Copy to Clipboard
+        window.copyJsonData = function(data) {
+            const cleanData = {
+                balance: data.balance,
+                createdAt: data.createdAt,
+                name: data.name,
+                oldBalance: data.oldBalance,
+                transectionId: data.transectionId,
+                uid: data.uid,
+                note: data.note || ""
+            };
+            const jsonString = JSON.stringify(cleanData, null, 2);
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(jsonString).then(() => {
+                    showToast("তথ্য সফলভাবে JSON ফরম্যাটে কপি হয়েছে।");
+                }).catch(() => {
+                    fallbackCopyText(jsonString);
+                });
+            } else {
+                fallbackCopyText(jsonString);
+            }
+        };
+
+        function fallbackCopyText(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast("তথ্য সফলভাবে JSON ফরম্যাটে কপি হয়েছে।");
+                } else {
+                    showToast("কপি করতে ব্যর্থ হয়েছে।", "error");
+                }
+            } catch (err) {
+                showToast("কপি করতে ব্যর্থ হয়েছে।", "error");
+            }
+            document.body.removeChild(textArea);
+        }
+
+        window.closeModal = function(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        };
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+    </script>
+</body>
+</html>
