@@ -261,7 +261,7 @@ async function createBanner() {
         await addDoc(collection(db, "reseller_banner"), {
             bannerLink: bannerLink,
             clickLink: clickLink,
-            createAt: serverTimestamp()
+            createdAt: serverTimestamp()
         });
 
         hideLoading();
@@ -282,14 +282,14 @@ async function loadBanners(isLoadMore = false) {
         
         let q = query(
             collection(db, "reseller_banner"),
-            orderBy("createAt", "desc"),
+            orderBy("createdAt", "desc"),
             limit(20)
         );
 
         if (isLoadMore && lastVisible) {
             q = query(
                 collection(db, "reseller_banner"),
-                orderBy("createAt", "desc"),
+                orderBy("createdAt", "desc"),
                 startAfter(lastVisible),
                 limit(20)
             );
@@ -330,8 +330,8 @@ function renderBannerCard(id, data) {
     card.className = "banner-card";
     
     let dateStr = "তারিখ উপলব্ধ নেই";
-    if (data.createAt && data.createAt.toDate) {
-        dateStr = data.createAt.toDate().toLocaleString("bn-BD");
+    if (data.createdAt && data.createdAt.toDate) {
+        dateStr = data.createdAt.toDate().toLocaleString("bn-BD");
     }
 
     card.innerHTML = `
@@ -342,7 +342,7 @@ function renderBannerCard(id, data) {
             <p class="banner-link-text">লিংক: <a href="${data.clickLink}" target="_blank">${data.clickLink}</a></p>
             <span class="banner-date">তৈরির সময়: ${dateStr}</span>
             <div class="banner-card-actions">
-                <button class="action-btn copy-btn" data-id="${id}" data-json='${JSON.stringify({bannerLink: data.bannerLink, clickLink: data.clickLink, createAt: dateStr})}'>
+                <button class="action-btn copy-btn" data-id="${id}" data-json='${JSON.stringify({bannerLink: data.bannerLink, clickLink: data.clickLink, createdAt: dateStr})}'>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                     JSON কপি করুন
                 </button>
