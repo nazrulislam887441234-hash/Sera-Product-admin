@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সব পণ্য ম্যানেজমেন্ট | Sera Product Admin</title>
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="product-manage.css">
+</head>
+<body>
+
+    <!-- Top Loading Popup -->
+    <div id="topLoadingPopup" class="top-loading-popup hidden">
+        <div class="spinner-sm"></div>
+        <span>লোড হচ্ছে...</span>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast-notification hidden"></div>
+
+    <!-- Custom Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal-overlay hidden">
+        <div class="modal-container" style="max-width: 400px; text-align: center; padding: 10px;">
+            <div class="modal-header" style="justify-content: center; border-bottom: none;">
+                <h2>আপনি কি নিশ্চিত?</h2>
+            </div>
+            <div class="modal-body" style="padding: 10px 20px;">
+                <p style="color: var(--text-muted); font-size: 15px;">এই পণ্যটি স্থায়ীভাবে মুছে ফেলা হবে। আপনি কি এটি ডিলিট করতে চান?</p>
+            </div>
+            <div class="modal-footer" style="justify-content: center; border-top: none; background: transparent;">
+                <button type="button" id="cancelDeleteBtn" class="btn btn-secondary">বাতিল</button>
+                <button type="button" id="confirmDeleteBtn" class="btn btn-danger">হ্যাঁ, ডিলিট করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="admin-layout">
+        
+        <!-- Header / Navigation Bar -->
+        <header class="admin-header">
+            <div class="header-left">
+                <h1>SERA PRODUCT</h1>
+                <span id="userBadge" class="user-badge">অ্যাডমিন</span>
+            </div>
+            <div class="header-right">
+                <span id="userEmail" class="user-email">loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary btn-sm">লগআউট</button>
+            </div>
+        </header>
+
+        <!-- Main Content Wrapper -->
+        <main class="admin-main">
+            
+            <!-- Page Title & Control Bar -->
+            <div class="control-bar-card">
+                <div class="page-title-box">
+                    <h2>সকল পণ্য ম্যানেজমেন্ট</h2>
+                    <p>আপনার দোকানের সকল পণ্য একসাথে দেখুন এবং পরিবর্তন করুন</p>
+                </div>
+
+                <!-- Filters & Search Section -->
+                <div class="filters-grid">
+                    <div class="form-group">
+                        <input type="text" id="searchInput" placeholder="স্লাগ দিয়ে সার্চ করুন (যেমন: t-shirt)...">
+                    </div>
+                    <div class="form-group">
+                        <select id="categoryFilter">
+                            <option value="">সকল ক্যাটাগরি</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="statusFilter">
+                            <option value="">সকল স্ট্যাটাস</option>
+                            <option value="active">সক্রিয় (Active)</option>
+                            <option value="inactive">নিষ্ক্রিয় (Inactive)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="state-container">
+                <div class="spinner-sm" style="width: 32px; height: 32px; border-width: 3px;"></div>
+                <p>পণ্যগুলো লোড হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="state-container hidden">
+                <p>কোনো পণ্য পাওয়া যায়নি!</p>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="productGrid" class="product-grid">
+                <!-- JavaScript দিয়ে কার্ডগুলো এখানে রেন্ডার হবে -->
+            </div>
+
+            <!-- Load More Button Container -->
+            <div class="load-more-container">
+                <button id="loadMoreBtn" class="btn btn-outline hidden">আরও পণ্য লোড করুন</button>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal-overlay hidden">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>পণ্য সম্পাদনা করুন</h2>
+                <button type="button" id="closeModalBtn" class="btn-icon-danger" style="background: transparent; color: var(--text-muted); font-size: 24px;">&times;</button>
+            </div>
+            <div class="modal-body" id="editModalBody">
+                <!-- ডায়নামিক এডিট ফর্ম এখানে রেন্ডার হবে -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancelEditBtn" class="btn btn-secondary">বাতিল</button>
+                <button type="button" id="saveProductBtn" class="btn btn-primary">সংরক্ষণ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden file input for image replace -->
+    <input type="file" id="replaceImageFileInput" accept="image/*" style="display: none;">
+
+    <!-- JavaScript Module Link -->
+    <script type="module" src="product-manage.js"></script>
+</body>
+</html>
