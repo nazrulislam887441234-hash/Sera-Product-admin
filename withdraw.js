@@ -350,7 +350,8 @@
                         balance: newBalance,
                         note: noteText,
                         createdAt: serverTimestamp(),
-                        uid: uid
+                        uid: uid,
+                        name: "উইথড্র করার রিকোয়েস্ট সফল হয়েছে!"
                     });
 
                     transaction.update(resellerRef, { balance: newBalance });
