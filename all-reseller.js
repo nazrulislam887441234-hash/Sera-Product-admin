@@ -457,7 +457,8 @@ confirmVerifyBtn.addEventListener("click", async () => {
                     uid: selectedVerifyItem.refferalUserId,
                     oldBalance: oldBal,
                     balance: newBal,
-                    name: "আপনার কোড দিয়ে একাউন্ট তৈরি করা হয়েছে!",
+                    name: "আপনার রেফার আইডি দিয়ে একাউন্ট করা হয়েছে",
+                    note: "আপনার রেফার কোড ব্যবহার করে রিসেলার একাউন্ট তৈরি করার কারণে আপনি ৩০ টাকা পেয়েছেন!",
                     createdAt: serverTimestamp(),
                     transectionId: uniqueTrx
                 });
