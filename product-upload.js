@@ -368,8 +368,7 @@ async function handleFormSubmit(e) {
         });
 
         // Warranty & Offer time
-        const warrantyVal = document.getElementById("warrantyInput").value;
-        const warranty = warrantyVal ? new Date(warrantyVal).getTime() : null;
+        const warranty = document.getElementById("warrantyInput").value.trim();
 
         const offerTimeVal = document.getElementById("offerTimeInput").value;
         const offerTime = offerTimeVal ? new Date(offerTimeVal).getTime() : null;
