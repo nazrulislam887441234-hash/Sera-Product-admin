@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>উত্তোলনের অনুরোধ ব্যবস্থাপনা | Sera Product Admin</title>
+    <link rel="icon" type="image/png" href="https://seraproduct.com/photo/logo.png">
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="withdraw.css">
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <img src="https://seraproduct.com/photo/logo.png" alt="Sera Product Logo">
+            <span>অ্যাডমিন প্যানেল</span>
+        </div>
+        <div class="user-info">
+            <span id="userRoleBadge" class="badge">লোড হচ্ছে...</span>
+            <span id="userEmailDisplay" class="user-email"></span>
+            <button class="logout-btn" id="logoutBtn">লগআউট</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <div class="page-title">
+                <h1>টাকা উত্তোলনের অনুরোধসমূহ</h1>
+                <p>রিসেলারদের বিকাশ উইথড্র রিকোয়েস্ট পর্যালোচনা ও পরিচালনা করুন</p>
+            </div>
+            <div class="stats-summary">
+                <div class="stat-card">
+                    <div class="label">মোট অনুরোধ</div>
+                    <div class="value" id="totalRequestsCount">০</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="withdraw-grid" id="withdrawGrid">
+            <div class="skeleton-card"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line long"></div></div>
+            <div class="skeleton-card"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line long"></div></div>
+            <div class="skeleton-card"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line long"></div></div>
+        </div>
+
+        <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+            <button class="btn-load-more" id="loadMoreBtn">আরও দেখুন</button>
+        </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3>টাকা পাঠানো হয়েছে?</h3>
+                <button class="close-modal" id="closeConfirmModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="calc-box">
+                    <div class="calc-row">
+                        <span>বিকাশ নাম্বার:</span>
+                        <strong id="modalBkashNumber">--</strong>
+                    </div>
+                    <div class="calc-row">
+                        <span>উত্তোলনের পরিমাণ:</span>
+                        <strong id="modalWithdrawAmount">৳ ০</strong>
+                    </div>
+                    <div class="calc-row">
+                        <span>রিসেলারের বর্তমান ব্যালেন্স:</span>
+                        <strong id="modalCurrentBalance">৳ ০</strong>
+                    </div>
+                    <div class="calc-row highlight">
+                        <span>উত্তোলনের পর ব্যালেন্স:</span>
+                        <strong id="modalNewBalance">৳ ০</strong>
+                    </div>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">
+                    এই নাম্বারে টাকা পাঠিয়েছেন? অনুগ্রহ করে নিচের তথ্যগুলো পূরণ করুন।
+                </p>
+                <div class="form-group">
+                    <label>বিকাশ ট্রানজেকশন আইডি</label>
+                    <input type="text" class="form-control" id="inputTrxId" placeholder="ট্রানজেকশন আইডি লিখুন" required>
+                </div>
+                <div class="form-group">
+                    <label>যে নাম্বার থেকে টাকা পাঠানো হয়েছে</label>
+                    <input type="text" class="form-control" id="inputSenderNumber" placeholder="টাকা পাঠানো নাম্বার লিখুন" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" id="cancelConfirmAction" style="flex: unset; padding: 10px 20px;">বাতিল</button>
+                <button class="btn btn-confirm" id="submitConfirmAction">টাকা পাঠানো হয়েছে, নিশ্চিত করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Modal -->
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-dialog" style="max-width: 420px;">
+            <div class="modal-header">
+                <h3>অনুরোধ বাতিলকরণ</h3>
+                <button class="close-modal" id="closeCancelModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 1rem; color: var(--text-main); font-weight: 500; text-align: center; padding: 10px 0;">
+                    আপনি কি এই Withdraw Request বাতিল করতে চান?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" id="dismissCancelAction" style="flex: 1;">বাতিল</button>
+                <button class="btn btn-confirm" id="submitCancelAction" style="flex: 1; background: var(--danger);">নিশ্চিত করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+<script type="module" src="withdraw.js"></script>
+</body>
+</html>
