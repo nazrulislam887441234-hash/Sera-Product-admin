@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#ff6a00">
+    <link rel="icon" type="image/png" href="https://seraproduct.com/photo/logo.png">
+    <link rel="stylesheet" href="dashboard.css">
+
+    <!-- Firebase SDKs (Compat Version for Vanilla JS implementation) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <div class="loading-text">অথেন্টিকেশন যাচাই করা হচ্ছে...</div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="brand-container">
+            <img src="https://seraproduct.com/photo/logo.png" alt="SERA PRODUCT Logo" class="brand-logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';">
+            <span id="fallback-logo" class="brand-fallback">SERA PRODUCT</span>
+        </div>
+        <div class="user-info-container">
+            <div class="user-meta">
+                <span id="user-email-display" class="user-email">loading@seraproduct.com</span>
+                <div id="role-badge-container" style="margin-top: 4px;"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Body -->
+    <main>
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">ম্যানেজমেন্ট ড্যাশবোর্ড</h1>
+            <p class="dashboard-subtitle">SERA PRODUCT এর এডমিন ও ওনার প্যানেল নিয়ন্ত্রণ কেন্দ্র</p>
+        </div>
+
+        <div id="dashboard-grid" class="dashboard-grid">
+            <!-- Cards will be dynamically injected via JavaScript in exact required order -->
+        </div>
+    </main>
+<script type="module" src="dashboard.js"></script>
+</body>
+</html>
