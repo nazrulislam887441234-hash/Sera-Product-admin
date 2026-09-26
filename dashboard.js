@@ -18,7 +18,7 @@
         const OWNER_EMAILS = [
             "shohidhossain@gmail.com",
             "nazrulislam887441234@gmail.com",
-            "support.seraproduct.com" // অথবা support.seraproduct@gmail.com
+            "support.seraproduct@gmail.com" // অথবা support.seraproduct@gmail.com
         ];
 
         // Exact 17 Cards Data Definition (Strict Order Maintained)
@@ -244,20 +244,17 @@
         }
 
         // Internal Navigation Handler
-        function navigateToRoute(route) {
-            // Security check for direct URL manipulation safety
-            if (route === '/all-admin') {
-                auth.currentUser.then(async user => {
-                    if (!user || !OWNER_EMAILS.includes(user.email)) {
-                        alert("আপনার এই পেইজে প্রবেশ করার অনুমতি নেই!");
-                        window.location.replace("https://admin.seraproduct.com");
-                        return;
-                    }
-                    window.location.href = route;
-                });
-                return;
-            }
-            
-            // Standard internal routing
-            window.location.href = route;
+        // Internal Navigation Handler - FIXED
+function navigateToRoute(route) {
+    const user = auth.currentUser;
+    // Security check for direct URL manipulation safety
+    if (route === '/all-admin') {
+        if (!user || !OWNER_EMAILS.includes(user.email)) {
+            alert("আপনার এই পেইজে প্রবেশ করার অনুমতি নেই!");
+            return;
         }
+    }
+    
+    // Standard internal routing
+    window.location.href = route;
+}
