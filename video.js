@@ -42,6 +42,7 @@ let lastVisibleDoc = null;
 let isSubmitting = false;
 let currentProcessedBlob = null;
 let currentVideoIdGlobal = null;
+let deleteTargetId = null;
 
 document.addEventListener("DOMContentLoaded", () => {
     initializeFirebase();
@@ -103,13 +104,13 @@ function setupUserUI(email, roleText) {
     badgeContainer.innerHTML = `<span class="badge">${roleText}</span>`;
 }
 
-function logoutUser() {
+window.logoutUser = function() {
     signOut(auth).then(() => {
         window.location.href = "https://admin.seraproduct.com";
     }).catch(() => {
         showError("লগআউট করতে সমস্যা হয়েছে।");
     });
-}
+};
 
 window.handleUrlInput = async function(url) {
     const videoId = extractYouTubeVideoId(url);
@@ -127,7 +128,7 @@ window.extractYouTubeVideoId = function(url) {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     const match = url.match(regExp);
     return (match && match[2].length === 11) ? match[2] : null;
-}
+};
 
 function showVideoPreview(videoId) {
     const previewContainer = document.getElementById("previewContainer");
@@ -227,7 +228,6 @@ window.handleFormSubmit = async function(e) {
         let thumbnailUrl = "";
 
         if (editingId && !currentProcessedBlob && document.getElementById("thumbnailPreviewImg").src) {
-            // Keep existing thumbnail if editing and no new video URL processed
             const cardEl = document.querySelector(`[data-id="${editingId}"]`);
             thumbnailUrl = cardEl ? cardEl.getAttribute("data-thumb") : "";
         }
@@ -369,16 +369,16 @@ function renderVideoCards(docs, append = false) {
         const card = document.createElement("div");
         card.className = "video-card";
         card.setAttribute("data-id", id);
-        card.setAttribute("data-thumb", data.thumbnail);
-        card.setAttribute("data-link", data.videoLink);
-        card.setAttribute("data-title", data.title);
+        card.setAttribute("data-thumb", data.thumbnail || "");
+        card.setAttribute("data-link", data.videoLink || "");
+        card.setAttribute("data-title", data.title || "");
 
         card.innerHTML = `
             <div class="video-card-thumb">
                 <img src="${data.thumbnail}" alt="Thumbnail">
             </div>
             <div class="video-card-body">
-                <h4 class="video-card-title">${escapeHtml(data.title)}</h4>
+                <h4 class="video-card-title">${escapeHtml(data.title || "")}</h4>
                 <div class="video-card-meta">তৈরি: ${timeStr}</div>
                 <div class="video-card-actions">
                     <a href="${data.videoLink}" target="_blank" class="btn btn-primary">
@@ -438,11 +438,11 @@ window.resetForm = function() {
     currentVideoIdGlobal = null;
 };
 
-let deleteTargetId = null;
 window.promptDeleteVideo = function(id) {
     deleteTargetId = id;
     document.getElementById("deleteModal").classList.remove("hidden");
-    document.getElementById("confirmDeleteBtn").onclick = executeDeleteVideo;
+    const confirmBtn = document.getElementById("confirmDeleteBtn");
+    confirmBtn.onclick = executeDeleteVideo;
 };
 
 window.closeDeleteModal = function() {
@@ -452,16 +452,18 @@ window.closeDeleteModal = function() {
 
 async function executeDeleteVideo() {
     if (!deleteTargetId) return;
+    const targetId = deleteTargetId;
     closeDeleteModal();
     showLoading("ভিডিও মুছে ফেলা হচ্ছে");
 
     try {
-        await deleteDoc(doc(db, "videos", deleteTargetId));
+        const videoRef = doc(db, "videos", targetId);
+        await deleteDoc(videoRef);
         showSuccess("ভিডিও সফলভাবে মুছে ফেলা হয়েছে।");
         loadVideos();
     } catch (error) {
         hideLoading();
-        showError("ভিডিও ডিলিট করতে ব্যর্থ হয়েছে।");
+        showError("ভিডিও ডিলিট করতে ব্যর্থ হয়েছে: " + error.message);
     }
 }
 
