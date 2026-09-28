@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="theme-color" content="#ff6a00">
+    <title>প্রোমো কোড ম্যানেজমেন্ট - SERA PRODUCT ADMIN PANEL</title>
+    <link rel="icon" type="image/png" href="https://seraproduct.com/photo/logo.png">
+    <style>
+        :root {
+            --primary: #ff6a00;
+            --primary-hover: #e05d00;
+            --bg-light: #f4f6f9;
+            --white: #ffffff;
+            --dark: #212529;
+            --gray-light: #e9ecef;
+            --gray: #6c757d;
+            --danger: #dc3545;
+            --success: #28a745;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Arial;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        .brand h1 {
+            font-size: 1.25rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-badge {
+            background-color: #fff3eb;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #ffd8be;
+        }
+
+        .user-email {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 24px auto;
+            padding: 0 16px;
+            flex: 1;
+        }
+
+        /* Page Top Actions */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background-color: var(--gray-light);
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: #dde1e5;
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        /* Limit Reached Card */
+        .limit-card {
+            background-color: #fff8f5;
+            border: 1px solid #ffcca8;
+            border-radius: var(--border-radius);
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: none;
+        }
+
+        .limit-card h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .limit-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Grid / List Layout */
+        .promo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .promo-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .promo-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--gray-light);
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+        }
+
+        .promo-code-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            word-break: break-all;
+        }
+
+        .badge-status {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-active {
+            background-color: #e6f4ea;
+            color: var(--success);
+        }
+
+        .badge-expired {
+            background-color: #fce8e6;
+            color: var(--danger);
+        }
+
+        .promo-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--dark);
+        }
+
+        .detail-item svg {
+            flex-shrink: 0;
+            fill: var(--gray);
+        }
+
+        .promo-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            border-top: 1px solid var(--gray-light);
+            padding-top: 12px;
+        }
+
+        /* Modal Overlay & Dialog */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            padding: 16px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-box {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            padding: 16px 20px;
+            background-color: var(--bg-light);
+            border-bottom: 1px solid var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 1.15rem;
+            color: var(--dark);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            color: var(--gray);
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ced4da;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+        }
+
+        .form-control:disabled {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
+
+        .form-help {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        .modal-footer {
+            padding: 12px 20px;
+            background-color: var(--bg-light);
+            border-top: 1px solid var(--gray-light);
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* Alert Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background: var(--dark);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .toast-success { background-color: var(--success); }
+        .toast-error { background-color: var(--danger); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Loading & Empty States */
+        .state-container {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .state-container p {
+            font-size: 1.05rem;
+            color: var(--gray);
+            margin-top: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .user-info {
+                font-size: 0.8rem;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="brand">
+            <img src="https://seraproduct.com/photo/logo.png" alt="SERA PRODUCT Logo">
+            <h1>প্রোমো কোড ম্যানেজমেন্ট</h1>
+        </div>
+        <div class="user-info">
+            <span class="user-badge" id="userRoleBadge">যাচাই করা হচ্ছে...</span>
+            <span class="user-email" id="userEmail">...</span>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <h2 class="page-title">সকল প্রোমো কোড</h2>
+            <button class="btn btn-primary" id="openCreateModalBtn" style="display: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                নতুন প্রোমো কোড তৈরি করুন
+            </button>
+        </div>
+
+        <!-- Limit Reached Message -->
+        <div class="limit-card" id="limitCard">
+            <h3>২০ টি প্রোমো কোড তৈরি করা হয়েছে!</h3>
+            <p>আর তৈরি করা যাবে না। নতুন তৈরি করতে হলে কোনও একটি প্রোমো কোড ডিলিট করতে হবে।</p>
+        </div>
+
+        <!-- Content Area -->
+        <div id="contentArea">
+            <div class="state-container">
+                <svg width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8a8 8 0 0 1-8 8z" opacity=".3"/><path fill="currentColor" d="M12 4a8 8 0 0 0-8 8h2a6 6 0 1 1 6 6v2a8 8 0 0 0 0-16z"/></svg>
+                <p>প্রোমো কোড লোড হচ্ছে...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal Form (Create / Edit) -->
+    <div class="modal-overlay" id="promoModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2 id="modalTitle">নতুন প্রোমো কোড তৈরি করুন</h2>
+                <button class="close-btn" id="closeModalBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="promoForm">
+                    <div class="form-group">
+                        <label for="promoCodeInput">ডিসকাউন্ট কোড</label>
+                        <input type="text" id="promoCodeInput" class="form-control" placeholder="যেমন: SAVE100" required>
+                        <div class="form-help">এটি ফায়ারবেস ডকুমেন্টের আইডি হিসেবে ব্যবহার হবে (যেমন: SAVE100)।</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="discountPriceInput">কত টাকা ডিসকাউন্ট</label>
+                        <input type="number" id="discountPriceInput" class="form-control" placeholder="যেমন: 100" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="shoppingLimitInput">কত টাকার শপিং করলে এই কোড ব্যবহার করতে পারবে</label>
+                        <input type="number" id="shoppingLimitInput" class="form-control" placeholder="যেমন: 1000" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expiredTimeInput">প্রোমো কোডের মেয়াদ</label>
+                        <input type="datetime-local" id="expiredTimeInput" class="form-control" required>
+                        <div class="form-help">এই সময়ের পর প্রোমো কোডটি আর ব্যবহার করা যাবে না।</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelModalBtn">বাতিল</button>
+                <button class="btn btn-primary" id="savePromoBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3s3 1.34 3 3s-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+                    সংরক্ষণ করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Confirmation Modal (Delete) -->
+    <div class="modal-overlay" id="deleteConfirmModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2>প্রোমো কোড ডিলিট নিশ্চিতকরণ</h2>
+                <button class="close-btn" id="closeDeleteModalBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 1rem; color: var(--dark);">
+                    আপনি কি এই প্রোমো কোডটি ডিলিট করতে চান?
+                </p>
+                <div style="margin-top: 12px; font-weight: 700; color: var(--primary); font-size: 1.1rem;" id="deleteCodeDisplay">
+                    --
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelDeleteBtn">বাতিল</button>
+                <button class="btn btn-danger" id="confirmDeleteBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                    ডিলিট করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Firebase SDK Modules -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { 
+            getAuth, 
+            onAuthStateChanged 
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { 
+            getFirestore, 
+            collection, 
+            doc, 
+            getDoc, 
+            getDocs, 
+            setDoc, 
+            updateDoc, 
+            deleteDoc, 
+            serverTimestamp,
+            query,
+            limit
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+  apiKey: "AIzaSyBRSt2aoSJ-lumYAWGAXE6ncui7__TqJ4E",
+  authDomain: "sera-product.firebaseapp.com",
+  projectId: "sera-product",
+  storageBucket: "sera-product.firebasestorage.app",
+  messagingSenderId: "516762224598",
+  appId: "1:516762224598:web:b6a571f355a8a4a97c0677",
+  measurementId: "G-RLMWH43FXX"
+};
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Owners List
+        const OWNER_EMAILS = [
+            "shohidhossain@gmail.com",
+            "nazrulislam887441234@gmail.com",
+            "support.seraproduct@gmail.com"
+        ];
+
+        // Global State
+        let currentPromos = [];
+        let isEditMode = false;
+        let editingDocId = null;
+        let deletingDocId = null;
+
+        // DOM Elements
+        const userRoleBadge = document.getElementById('userRoleBadge');
+        const userEmail = document.getElementById('userEmail');
+        const openCreateModalBtn = document.getElementById('openCreateModalBtn');
+        const limitCard = document.getElementById('limitCard');
+        const contentArea = document.getElementById('contentArea');
+        const promoModal = document.getElementById('promoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const promoForm = document.getElementById('promoForm');
+        const promoCodeInput = document.getElementById('promoCodeInput');
+        const discountPriceInput = document.getElementById('discountPriceInput');
+        const shoppingLimitInput = document.getElementById('shoppingLimitInput');
+        const expiredTimeInput = document.getElementById('expiredTimeInput');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelModalBtn = document.getElementById('cancelModalBtn');
+        const savePromoBtn = document.getElementById('savePromoBtn');
+
+        const deleteConfirmModal = document.getElementById('deleteConfirmModal');
+        const closeDeleteModalBtn = document.getElementById('closeDeleteModalBtn');
+        const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+        const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+        const deleteCodeDisplay = document.getElementById('deleteCodeDisplay');
+
+        // Toast Notification System
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3500);
+        }
+
+        // Auth Protection & Verification
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = "https://admin.seraproduct.com";
+                return;
+            }
+
+            const email = user.email ? user.email.toLowerCase() : "";
+            userEmail.textContent = email;
+
+            // 1. Check Owner Status
+            if (OWNER_EMAILS.includes(email)) {
+                userRoleBadge.textContent = "Owner";
+                initPanel();
+                return;
+            }
+
+            // 2. Check Admin Status in Firestore (admins/{uid})
+            try {
+                const adminDocRef = doc(db, "admins", user.uid);
+                const adminSnap = await getDoc(adminDocRef);
+
+                if (adminSnap.exists()) {
+                    const data = adminSnap.data();
+                    if (data.name && data.email && data.uid && data.active === true) {
+                        userRoleBadge.textContent = "Admin";
+                        initPanel();
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.error("Auth check error:", error);
+            }
+
+            // Unauthorized Redirect
+            window.location.href = "https://admin.seraproduct.com";
+        });
+
+        // Initialize Panel Data
+        async function initPanel() {
+            await fetchPromoCodes();
+        }
+
+        // Fetch Promo Codes Efficiently
+        async function fetchPromoCodes() {
+            contentArea.innerHTML = `
+                <div class="state-container">
+                    <p>প্রোমো কোড লোড হচ্ছে...</p>
+                </div>
+            `;
+
+            try {
+                // Fetch up to 21 items to check strictly for limit requirement without loading unneeded bulk
+                const q = query(collection(db, "promoCode"), limit(21));
+                const querySnapshot = await getDocs(q);
+
+                currentPromos = [];
+                querySnapshot.forEach((doc) => {
+                    currentPromos.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+
+                renderPromoList();
+                updateCreationLimitState();
+
+            } catch (error) {
+                console.error("Error fetching promo codes:", error);
+                showToast("প্রোমো কোড লোড করতে সমস্যা হয়েছে।", "error");
+                contentArea.innerHTML = `
+                    <div class="state-container">
+                        <p style="color: var(--danger);">সমস্যা হয়েছে। অনুগ্রহ করে পেজ রিফ্রেশ করুন।</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Check Limit & UI Toggle
+        function updateCreationLimitState() {
+            if (currentPromos.length >= 20) {
+                openCreateModalBtn.style.display = "none";
+                limitCard.style.display = "block";
+            } else {
+                openCreateModalBtn.style.display = "inline-flex";
+                limitCard.style.display = "none";
+            }
+        }
+
+        // Render Promo Cards
+        function renderPromoList() {
+            if (currentPromos.length === 0) {
+                contentArea.innerHTML = `
+                    <div class="state-container">
+                        <p>এখনও কোনও প্রোমো কোড তৈরি করা হয়নি।</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const now = Date.now();
+            let html = '<div class="promo-grid">';
+
+            currentPromos.forEach((promo) => {
+                const isExpired = now > promo.expiredTime;
+                const statusBadge = isExpired 
+                    ? `<span class="badge-status badge-expired">মেয়াদ শেষ</span>`
+                    : `<span class="badge-status badge-active">চলমান</span>`;
+
+                const formattedExpiry = formatBengaliDateTime(promo.expiredTime);
+
+                html += `
+                    <div class="promo-card">
+                        <div>
+                            <div class="promo-card-header">
+                                <span class="promo-code-title">${escapeHTML(promo.id)}</span>
+                                ${statusBadge}
+                            </div>
+                            <div class="promo-details">
+                                <div class="detail-item">
+                                    <svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M12.79 21L3 11.21V3h8.21L21 12.79L12.79 21zM6.5 7C5.67 7 5 6.33 5 5.5S5.67 4 6.5 4S8 4.67 8 5.5S7.33 7 6.5 7z"/></svg>
+                                    <span>ডিসকাউন্ট: <strong>৳${promo.discountPrice}</strong></span>
+                                </div>
+                                <div class="detail-item">
+                                    <svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2s-.9-2-2-2zM1 2v2h2l3.6 7.59l-1.35 2.45c-.16.28-.25.61-.25.96c0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12l.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2s2-.9 2-2s-.9-2-2-2z"/></svg>
+                                    <span>ন্যূনতম শপিং: <strong>৳${promo.shoppingLimit}</strong></span>
+                                </div>
+                                <div class="detail-item">
+                                    <svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8zm.5-13H11v6l5.25 3.15l.75-1.23l-4.5-2.67z"/></svg>
+                                    <span>মেয়াদ: ${formattedExpiry}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="promo-actions">
+                            <button class="btn btn-secondary btn-sm" onclick="handleEdit('${escapeHTML(promo.id)}')">
+                                <svg width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83l3.75 3.75l1.83-1.83z"/></svg>
+                                এডিট
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="handleDeletePrompt('${escapeHTML(promo.id)}')">
+                                <svg width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                                ডিলিট
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            contentArea.innerHTML = html;
+        }
+
+        // Date/Time Formatting to Bengali
+        function formatBengaliDateTime(timestamp) {
+            if (!timestamp) return "";
+            const date = new Date(timestamp);
+            
+            const monthsBengali = ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
+            
+            const day = convertToBengaliDigits(date.getDate());
+            const month = monthsBengali[date.getMonth()];
+            const year = convertToBengaliDigits(date.getFullYear());
+            
+            let hours = date.getHours();
+            const minutes = convertToBengaliDigits(date.getMinutes().toString().padStart(2, '0'));
+            
+            let period = "রাত";
+            if (hours >= 4 && hours < 12) period = "সকাল";
+            else if (hours >= 12 && hours < 16) period = "দুপুর";
+            else if (hours >= 16 && hours < 18) period = "সংক্রান্ত";
+            else if (hours >= 18 && hours < 20) period = "সন্ধ্যা";
+            
+            hours = hours % 12 || 12;
+            const hourStr = convertToBengaliDigits(hours);
+
+            return `${day} ${month} ${year} ${period} ${hourStr}:${minutes}`;
+        }
+
+        function convertToBengaliDigits(str) {
+            const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+            return str.toString().replace(/\d/g, x => bengaliDigits[x]);
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        // Modal Handlers
+        openCreateModalBtn.addEventListener('click', () => {
+            if (currentPromos.length >= 20) {
+                showToast("সর্বোচ্চ ২০ টি প্রোমো কোড সীমা পূর্ণ হয়েছে।", "error");
+                return;
+            }
+            isEditMode = false;
+            editingDocId = null;
+            modalTitle.textContent = "নতুন প্রোমো কোড তৈরি করুন";
+            promoCodeInput.disabled = false;
+            promoForm.reset();
+            promoModal.classList.add('active');
+        });
+
+        function closeModal() {
+            promoModal.classList.remove('active');
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        cancelModalBtn.addEventListener('click', closeModal);
+
+        // Edit Handler
+        window.handleEdit = function(id) {
+            const promo = currentPromos.find(p => p.id === id);
+            if (!promo) return;
+
+            isEditMode = true;
+            editingDocId = id;
+            modalTitle.textContent = "প্রোমো কোড এডিট করুন";
+
+            promoCodeInput.value = promo.id;
+            promoCodeInput.disabled = true; // Immutable Document ID
+
+            discountPriceInput.value = promo.discountPrice;
+            shoppingLimitInput.value = promo.shoppingLimit;
+
+            // Format timestamp to ISO datetime-local format
+            const dt = new Date(promo.expiredTime);
+            dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
+            expiredTimeInput.value = dt.toISOString().slice(0, 16);
+
+            promoModal.classList.add('active');
+        };
+
+        // Form Submit (Save / Update)
+        savePromoBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            const rawCode = promoCodeInput.value.trim();
+            const discountPrice = Number(discountPriceInput.value);
+            const shoppingLimit = Number(shoppingLimitInput.value);
+            const expiredTimeRaw = expiredTimeInput.value;
+
+            // Validations
+            if (!isEditMode && !rawCode) {
+                showToast("ডিসকাউন্ট কোড পূরণ করুন।", "error");
+                return;
+            }
+
+            // Document ID validation (Firebase invalid characters check)
+            if (!isEditMode && /[\/\#\?\[\]]/.test(rawCode)) {
+                showToast("কোডে অনুপযুক্ত অক্ষর (/ # ? [ ]) ব্যবহার করা যাবে না।", "error");
+                return;
+            }
+
+            if (!discountPrice || discountPrice <= 0) {
+                showToast("সঠিক ডিসকাউন্ট পরিমাণ লিখুন।", "error");
+                return;
+            }
+
+            if (shoppingLimit < 0 || isNaN(shoppingLimit)) {
+                showToast("সঠিক ন্যূনতম শপিং পরিমাণ লিখুন।", "error");
+                return;
+            }
+
+            if (!expiredTimeRaw) {
+                showToast("মেয়াদের তারিখ ও সময় নির্বাচন করুন।", "error");
+                return;
+            }
+
+            const expiredTime = new Date(expiredTimeRaw).getTime();
+            if (isNaN(expiredTime)) {
+                showToast("সঠিক তারিখ নির্বাচন করুন।", "error");
+                return;
+            }
+
+            savePromoBtn.disabled = true;
+            savePromoBtn.innerText = "সংরক্ষণ হচ্ছে...";
+
+            try {
+                if (isEditMode) {
+                    // Update Editable Fields
+                    const docRef = doc(db, "promoCode", editingDocId);
+                    await updateDoc(docRef, {
+                        discountPrice: Number(discountPrice),
+                        shoppingLimit: Number(shoppingLimit),
+                        expiredTime: Number(expiredTime)
+                    });
+
+                    showToast("প্রোমো কোড সফলভাবে আপডেট হয়েছে।", "success");
+                } else {
+                    // Race condition double-check before creation
+                    if (currentPromos.length >= 20) {
+                        showToast("সর্বোচ্চ ২০ টি প্রোমো কোড তৈরি করা সম্ভব।", "error");
+                        closeModal();
+                        savePromoBtn.disabled = false;
+                        savePromoBtn.innerText = "সংরক্ষণ করুন";
+                        return;
+                    }
+
+                    // Check Duplicate Document ID
+                    const docRef = doc(db, "promoCode", rawCode);
+                    const existingSnap = await getDoc(docRef);
+                    if (existingSnap.exists()) {
+                        showToast("এই প্রোমো কোডটি ইতিমধ্যে তৈরি করা হয়েছে। অন্য একটি কোড ব্যবহার করুন।", "error");
+                        savePromoBtn.disabled = false;
+                        savePromoBtn.innerText = "সংরক্ষণ করুন";
+                        return;
+                    }
+
+                    // Save New Document
+                    await setDoc(docRef, {
+                        discountPrice: Number(discountPrice),
+                        shoppingLimit: Number(shoppingLimit),
+                        expiredTime: Number(expiredTime),
+                        createdAt: serverTimestamp()
+                    });
+
+                    showToast("প্রোমো কোড সফলভাবে তৈরি হয়েছে।", "success");
+                }
+
+                closeModal();
+                await fetchPromoCodes();
+
+            } catch (error) {
+                console.error("Save error:", error);
+                showToast("সমস্যা হয়েছে। আবার চেষ্টা করুন।", "error");
+            } finally {
+                savePromoBtn.disabled = false;
+                savePromoBtn.innerHTML = `
+                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3s3 1.34 3 3s-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+                    সংরক্ষণ করুন
+                `;
+            }
+        });
+
+        // Delete Handler Setup
+        window.handleDeletePrompt = function(id) {
+            deletingDocId = id;
+            deleteCodeDisplay.textContent = id;
+            deleteConfirmModal.classList.add('active');
+        };
+
+        function closeDeleteModal() {
+            deleteConfirmModal.classList.remove('active');
+            deletingDocId = null;
+        }
+
+        closeDeleteModalBtn.addEventListener('click', closeDeleteModal);
+        cancelDeleteBtn.addEventListener('click', closeDeleteModal);
+
+        confirmDeleteBtn.addEventListener('click', async () => {
+            if (!deletingDocId) return;
+
+            confirmDeleteBtn.disabled = true;
+            confirmDeleteBtn.innerText = "ডিলিট হচ্ছে...";
+
+            try {
+                await deleteDoc(doc(db, "promoCode", deletingDocId));
+                showToast("প্রোমো কোড সফলভাবে ডিলিট হয়েছে।", "success");
+                closeDeleteModal();
+                await fetchPromoCodes();
+            } catch (error) {
+                console.error("Delete error:", error);
+                showToast("ডিলিট করতে সমস্যা হয়েছে।", "error");
+            } finally {
+                confirmDeleteBtn.disabled = false;
+                confirmDeleteBtn.innerHTML = `
+                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                    ডিলিট করুন
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
