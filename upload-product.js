@@ -396,6 +396,7 @@ async function handleFormSubmit(e) {
             variants: variants,
             offerTime: offerTime,
             reviewVideo: reviewVideo,
+            active: true,
             createdAt: serverTimestamp()
         };
 
