@@ -139,22 +139,62 @@ function setupEventListeners() {
     document.getElementById("copyJsonBtn").addEventListener("click", copyProductJSON);
 }
 
+// Image Compression Helper Function (80% Quality)
+function compressImage(file, quality = 0.8) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = () => {
+                const canvas = document.createElement("canvas");
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, img.width, img.height);
+                
+                canvas.toBlob((blob) => {
+                    if (!blob) {
+                        reject(new Error("ক্যানভাস ফাঁকা পাওয়া গেছে।"));
+                        return;
+                    }
+                    const compressedFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", {
+                        type: "image/jpeg",
+                        lastModified: Date.now()
+                    });
+                    resolve(compressedFile);
+                }, "image/jpeg", quality);
+            };
+            img.onerror = (error) => reject(error);
+        };
+        reader.onerror = (error) => reject(error);
+    });
+}
+
 // Image Selection Handling
-function handleImageSelection(e) {
+async function handleImageSelection(e) {
     const files = Array.from(e.target.files);
     if (selectedFiles.length + files.length > 10) {
         showToast("সর্বোচ্চ ১০টি ছবি নির্বাচন করা যাবে।");
         return;
     }
 
-    files.forEach(file => {
-        selectedFiles.push({
-            file: file,
-            previewUrl: URL.createObjectURL(file)
-        });
-    });
-
-    renderImagePreviews();
+    showLoading("ছবি ৮০% কোয়ালিটিতে প্রসেস ও কমপ্রেস করা হচ্ছে...");
+    try {
+        for (const file of files) {
+            const compressedFile = await compressImage(file, 0.8);
+            selectedFiles.push({
+                file: compressedFile,
+                previewUrl: URL.createObjectURL(compressedFile)
+            });
+        }
+        renderImagePreviews();
+    } catch (error) {
+        showToast("ছবি প্রসেস করতে সমস্যা হয়েছে।");
+    } finally {
+        hideLoading();
+    }
 }
 
 function renderImagePreviews() {
@@ -377,6 +417,7 @@ async function handleFormSubmit(e) {
         const reviewVideo = reviewVideoRaw ? createYouTubeEmbedUrl(reviewVideoRaw) || "" : "";
 
         const freeDelivery = document.getElementById("freeDeliveryToggle").checked;
+        const advance = document.getElementById("advanceToggle").checked;
         const sku = document.getElementById("skuInput").value.trim();
 
         const productData = {
@@ -393,6 +434,7 @@ async function handleFormSubmit(e) {
             sku: sku,
             warranty: warranty,
             freeDelivery: freeDelivery,
+            advance: advance,
             variants: variants,
             offerTime: offerTime,
             reviewVideo: reviewVideo,
