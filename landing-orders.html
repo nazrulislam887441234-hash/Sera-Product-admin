@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>অর্ডার ব্যবস্থাপনা - SERA PRODUCT Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #ff6a00;
+      --primary-hover: #e05d00;
+      --primary-light: #fff0e6;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border-color: #e5e7eb;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding-bottom: 40px;
+    }
+
+    /* Header */
+    .header {
+      background-color: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .page-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      border-left: 2px solid var(--border-color);
+      padding-left: 12px;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .admin-badge {
+      background-color: var(--primary-light);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .user-email {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+    }
+
+    .toast {
+      background-color: #10b981;
+      color: white;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+    }
+
+    .toast.error {
+      background-color: #ef4444;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    /* Filter Controls */
+    .filter-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .filter-label {
+      font-weight: 600;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .select-control {
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      background-color: #fff;
+      cursor: pointer;
+      min-width: 200px;
+    }
+
+    .select-control:focus {
+      border-color: var(--primary);
+    }
+
+    /* Orders Grid */
+    .orders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .order-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .order-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .customer-name {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text-main);
+    }
+
+    .phone-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .phone-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 4px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-btn:hover {
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .status-badge {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Status Badges Colors */
+    .badge-pending { background-color: #fef3c7; color: #d97706; }
+    .badge-confirm { background-color: #d1fae5; color: #059669; }
+    .badge-processing { background-color: #e0f2fe; color: #0284c7; }
+    .badge-return { background-color: #f1f5f9; color: #475569; }
+    .badge-cancel { background-color: #fee2e2; color: #dc2626; }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 12px;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: #e5e7eb;
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background-color: #d1d5db;
+    }
+
+    .load-more-container {
+      text-align: center;
+      margin: 24px 0;
+    }
+
+    .loading-spinner {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--text-muted);
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 16px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      background: var(--card-bg);
+      z-index: 10;
+    }
+
+    .modal-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 4px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 8px 16px;
+      font-size: 14px;
+    }
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-label {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .info-value {
+      font-weight: 600;
+    }
+
+    .note-box {
+      background-color: #f3f4f6;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .product-box {
+      display: flex;
+      gap: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px;
+      background-color: #fafafa;
+    }
+
+    .product-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background-color: #eee;
+    }
+
+    .product-details {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      font-size: 14px;
+    }
+
+    .variant-tag {
+      background-color: #eef2ff;
+      color: #3730a3;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      display: inline-block;
+      margin-right: 4px;
+      margin-top: 4px;
+    }
+
+    .highlight-banner {
+      background-color: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pricing-summary {
+      background-color: #f9fafb;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 14px;
+    }
+
+    .pricing-row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .pricing-row.total {
+      border-top: 1px dashed var(--border-color);
+      padding-top: 8px;
+      margin-top: 4px;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--primary);
+    }
+
+    .modal-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      background: var(--card-bg);
+      border-bottom-left-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
+    }
+
+    .svg-icon {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .page-title {
+        border-left: none;
+        padding-left: 0;
+      }
+      .product-box {
+        flex-direction: column;
+      }
+      .product-img {
+        width: 100%;
+        height: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="header">
+    <div class="brand-container">
+      <img src="https://seraproduct.com/photo/logo.png" alt="SERA PRODUCT" class="brand-logo" onerror="this.style.display='none'">
+      <h1 class="page-title">ল্যান্ডিং পেজ অর্ডারসমূহ</h1>
+    </div>
+    <div class="user-info">
+      <span class="admin-badge">এডমিন панел</span>
+      <span class="user-email" id="userEmail">লোড হচ্ছে...</span>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="container">
+    
+    <!-- Filter Section -->
+    <section class="filter-card">
+      <label for="statusFilter" class="filter-label">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
+        অর্ডারের অবস্থা দিয়ে খুঁজুন:
+      </label>
+      <select id="statusFilter" class="select-control">
+        <option value="all">সব অর্ডার</option>
+        <option value="pending">নতুন অর্ডার</option>
+        <option value="confirm">কনফার্ম করা হয়েছে</option>
+        <option value="processing">কোরিয়ারে দেওয়া হয়েছে</option>
+        <option value="return">রিটার্ন করা হয়েছে</option>
+        <option value="cancel">বাতিল করা হয়েছে</option>
+      </select>
+    </section>
+
+    <!-- Orders Grid Area -->
+    <section id="ordersContainer" class="orders-grid"></section>
+
+    <!-- Loaders & States -->
+    <div id="initialLoader" class="loading-spinner">
+      <svg class="svg-icon" style="width:32px;height:32px;animation:spin 1s linear infinite;" viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+      <style>@keyframes spin{100%{transform:rotate(360deg);}}</style>
+      <span>অর্ডার লোড হচ্ছে...</span>
+    </div>
+
+    <div id="emptyState" class="empty-state" style="display: none;">
+      <p id="emptyStateMessage">কোনো অর্ডার পাওয়া যায়নি।</p>
+    </div>
+
+    <div id="loadMoreContainer" class="load-more-container" style="display: none;">
+      <button id="loadMoreBtn" class="btn btn-secondary">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        আরও দেখুন
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Full Details Modal -->
+  <div id="detailsModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="section-title" style="margin:0; border:none;">সম্পূর্ণ অর্ডার বিবরণ</h3>
+        <button class="icon-btn" id="closeModalBtn">
+          <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="closeModalFooterBtn">বন্ধ করুন</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status Change Confirmation Modal -->
+  <div id="confirmModal" class="modal-overlay">
+    <div class="modal-card" style="max-width:400px;">
+      <div class="modal-header">
+        <h3 class="section-title" style="margin:0; border:none;">নিশ্চিতকরণ</h3>
+      </div>
+      <div class="modal-body">
+        <p>আপনি কি অর্ডারের অবস্থা পরিবর্তন করতে চান?</p>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:8px;">
+          বর্তমান অবস্থা: <strong id="currentStatusText">-</strong><br>
+          নতুন অবস্থা: <strong id="newStatusText">-</strong>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancelStatusBtn">বাতিল</button>
+        <button class="btn btn-primary" id="confirmStatusBtn">পরিবর্তন করুন</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JavaScript Module -->
+  <script type="module" src="landing-orders.js"></script>
+</body>
+</html>
