@@ -136,6 +136,13 @@
                 desc: 'রিসেলার ও উইথড্রল রিকোয়েস্ট প্রসেস করুন',
                 icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>'
             },
+                {
+    id: 'landing-orders',
+    name: 'ল্যান্ডিং পেজ অর্ডার',
+    route: '/landing-orders',
+    desc: 'ল্যান্ডিং পেজ থেকে আসা সকল অর্ডার দেখুন ও ম্যানেজ করুন',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>'
+},
             {
                 id: 'promo-code',
                 name: 'প্রোমো কোড',
